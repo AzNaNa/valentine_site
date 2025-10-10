@@ -1,7 +1,8 @@
 import random
 
 print('Добро пожаловать в числовую угадайку!')
-digit = random.randint(1, 100)  
+total = 1
+attempts = 0
 
 def is_digit_correct(num):
     if num.isdigit():
@@ -13,28 +14,50 @@ def is_digit_correct(num):
     else:
         return False   
 
-def game(num):
-    num = int(num)  
+def game(num, digit):
+    global attempts  
+    num = int(num) 
     if num == digit:
         print("Вы угадали, поздравляем!")
+        print(f'Количество попыток: {attempts + 1}')  
         return True
     elif num < digit:
         print('Слишком мало, попробуйте еще раз')  
+        attempts += 1
         return False
     elif num > digit:
         print("Слишком много, попробуйте еще раз")  
+        attempts += 1
         return False
 
 def start_game():
+    global attempts  
+    digit = random.randint(1, 100)  
+    attempts = 0  
+    
     while True:  
         num = input("Введите ваше число: ")
         if not is_digit_correct(num):
             print("А может быть все-таки введем целое число от 1 до 100?")
             continue
         else:
-            if game(num):
+            if game(num, digit):
                 break  
             else:
                 print("Попробуйте еще раз!")
 
+
+print(f'Это ваша {total}-ая игра')
 start_game()
+
+while True:
+    answer = input("Хотите сыграть еще? ")
+    if answer.lower() in ["да", "yes", "y"]:  
+        total += 1
+        print(f'Это ваша {total}-ая игра')
+        start_game()
+    elif answer.lower() in ["нет", "no", "n"]:
+        print("До следующей игры!")
+        break
+    else:
+        print("Ответьте 'Да' или 'Нет'")
