@@ -45,8 +45,9 @@ h1 {
 
 .photo-slot {
   margin: 1.2rem auto 0;
-  width: min(78vw, 340px);
-  aspect-ratio: 1 / 1;
+  width: min(84vw, 500px);
+  aspect-ratio: 16 / 9;
+  max-height: 220px;
   border-radius: 18px;
   border: 2px dashed rgba(255, 255, 255, 0.8);
   background: rgba(255, 255, 255, 0.2);
