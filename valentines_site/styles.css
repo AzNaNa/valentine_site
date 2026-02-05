@@ -1,127 +1,154 @@
-:root {
-  --accent: #ff2f68;
-  --accent-dark: #db134d;
-  --text: #fff;
-  --bg-1: #ffd6e7;
-  --bg-2: #ff9ec4;
-  --bg-3: #ff6fa3;
-}
-
-* {
-  box-sizing: border-box;
-}
-
-body {
-  margin: 0;
-  min-height: 100vh;
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  color: var(--text);
-  background: radial-gradient(circle at top left, var(--bg-1), transparent 50%),
-    radial-gradient(circle at bottom right, #ffc1d8, transparent 45%),
-    linear-gradient(135deg, var(--bg-2), var(--bg-3));
-  overflow: hidden;
-  display: grid;
-  place-items: center;
-}
-
-.card {
-  width: min(90vw, 700px);
-  text-align: center;
-  padding: 2rem;
-  border-radius: 24px;
-  background: rgba(255, 255, 255, 0.14);
-  backdrop-filter: blur(7px);
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  box-shadow: 0 18px 50px rgba(141, 12, 62, 0.25);
-  z-index: 3;
-}
-
-h1 {
-  margin: 0;
-  font-size: clamp(1.7rem, 4vw, 3rem);
-  text-wrap: balance;
-}
-
-.buttons {
-  margin-top: 2rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 1.2rem;
-}
-
-.btn {
-  border: none;
-  cursor: pointer;
-  border-radius: 999px;
-  color: #fff;
-  font-weight: 700;
-  transition: transform 0.15s ease, filter 0.2s ease;
-}
-
-.btn:hover {
-  transform: translateY(-2px);
-  filter: brightness(1.05);
-}
-
-.btn-yes {
-  background: linear-gradient(145deg, #ff4b79, var(--accent-dark));
-  padding: 0.95rem 2.5rem;
-  font-size: 1.6rem;
-  box-shadow: 0 8px 20px rgba(190, 16, 75, 0.4);
-}
-
-.btn-no {
-  position: fixed;
-  background: #eaeaea;
-  color: #444;
-  padding: 0.5rem 0.95rem;
-  font-size: 0.95rem;
-  z-index: 5;
-}
-
-.celebration {
-  position: fixed;
-  inset: 0;
-  display: grid;
-  align-content: center;
-  justify-items: center;
-  gap: 0.8rem;
-  text-align: center;
-  background: rgba(80, 12, 41, 0.45);
-  backdrop-filter: blur(4px);
-  z-index: 10;
-}
-
-.celebration h2 {
-  margin: 0;
-  font-size: clamp(2rem, 6vw, 4rem);
-}
-
-.celebration p {
-  margin: 0;
-  font-size: clamp(1rem, 2.5vw, 1.4rem);
-}
-
-.celebration img {
-  margin-top: 0.8rem;
-  width: min(80vw, 380px);
-  max-height: 45vh;
-  object-fit: cover;
-  border-radius: 18px;
-  border: 3px solid rgba(255, 255, 255, 0.85);
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.28);
-}
-
-.hidden {
-  display: none;
-}
-
-.confetti-canvas {
-  position: fixed;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  z-index: 9;
-}
++:root {
++  --accent: #ff2f68;
++  --accent-dark: #db134d;
++  --text: #fff;
++  --bg-1: #ffd6e7;
++  --bg-2: #ff9ec4;
++  --bg-3: #ff6fa3;
++}
++
++* {
++  box-sizing: border-box;
++}
++
++body {
++  margin: 0;
++  min-height: 100vh;
++  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
++  color: var(--text);
++  background: radial-gradient(circle at top left, var(--bg-1), transparent 50%),
++    radial-gradient(circle at bottom right, #ffc1d8, transparent 45%),
++    linear-gradient(135deg, var(--bg-2), var(--bg-3));
++  overflow: hidden;
++  display: grid;
++  place-items: center;
++}
++
++.card {
++  position: relative;
++  width: min(90vw, 700px);
++  text-align: center;
++  padding: 2rem;
++  border-radius: 24px;
++  background: rgba(255, 255, 255, 0.14);
++  backdrop-filter: blur(7px);
++  border: 1px solid rgba(255, 255, 255, 0.3);
++  box-shadow: 0 18px 50px rgba(141, 12, 62, 0.25);
++  z-index: 3;
++}
++
++h1 {
++  margin: 0;
++  font-size: clamp(1.7rem, 4vw, 3rem);
++  text-wrap: balance;
++}
++
++.photo-slot {
++  margin: 1.2rem auto 0;
++  width: min(78vw, 340px);
++  aspect-ratio: 4 / 3;
++  border-radius: 18px;
++  border: 2px dashed rgba(255, 255, 255, 0.8);
++  background: rgba(255, 255, 255, 0.2);
++  overflow: hidden;
++}
++
++.photo-slot img {
++  width: 100%;
++  height: 100%;
++  object-fit: cover;
++}
++
++.buttons {
++  margin-top: 1.4rem;
++  min-height: 72px;
++  display: flex;
++  justify-content: center;
++  align-items: center;
++  gap: 1.2rem;
++}
++
++.btn {
++  border: none;
++  cursor: pointer;
++  border-radius: 999px;
++  color: #fff;
++  font-weight: 700;
++  transition: transform 0.15s ease, filter 0.2s ease;
++}
++
++.btn:hover {
++  transform: translateY(-2px);
++  filter: brightness(1.05);
++}
++
++.btn-yes {
++  background: linear-gradient(145deg, #ff4b79, var(--accent-dark));
++  padding: 0.95rem 2.5rem;
++  font-size: 1.6rem;
++  box-shadow: 0 8px 20px rgba(190, 16, 75, 0.4);
++}
++
++.btn-no {
++  background: #eaeaea;
++  color: #444;
++  padding: 0.5rem 0.95rem;
++  font-size: 0.95rem;
++}
++
++.btn-no.is-running {
++  position: absolute;
++  z-index: 6;
++}
++
++.no-hint {
++  margin: 0.7rem 0 0;
++  font-size: 0.86rem;
++  opacity: 0.95;
++}
++
++.celebration {
++  position: fixed;
++  inset: 0;
++  display: grid;
++  align-content: center;
++  justify-items: center;
++  gap: 0.8rem;
++  text-align: center;
++  background: rgba(80, 12, 41, 0.45);
++  backdrop-filter: blur(4px);
++  z-index: 10;
++}
++
++.celebration h2 {
++  margin: 0;
++  font-size: clamp(2rem, 6vw, 4rem);
++}
++
++.celebration p {
++  margin: 0;
++  font-size: clamp(1rem, 2.5vw, 1.4rem);
++}
++
++.celebration img {
++  margin-top: 0.8rem;
++  width: min(80vw, 380px);
++  max-height: 45vh;
++  object-fit: cover;
++  border-radius: 18px;
++  border: 3px solid rgba(255, 255, 255, 0.85);
++  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.28);
++}
++
++.hidden {
++  display: none;
++}
++
++.confetti-canvas {
++  position: fixed;
++  inset: 0;
++  width: 100%;
++  height: 100%;
++  pointer-events: none;
++  z-index: 9;
++}
