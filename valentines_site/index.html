@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ты будешь моей валентинкой, Сонечка?</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="card" id="card">
+      <h1>Ты будешь моей валентинкой, Сонечка? ❤️</h1>
+
+      <div class="photo-slot" aria-label="Место для милой картинки">
+        <!-- Замени src на свою картинку или GIF -->
+        <img src="your-cute-media.gif" alt="Милая фотография или GIF" />
+      </div>
+
+      <div class="buttons" id="buttonsArea">
+        <button id="yesBtn" class="btn btn-yes">Да</button>
+        <button id="noBtn" class="btn btn-no">Нет</button>
+      </div>
+
+      <p id="noHint" class="no-hint hidden">Надеюсь ты пыталась нажать "Да" и промазала</p>
+    </main>
+
+    <section id="celebration" class="celebration hidden" aria-hidden="true">
+      <h2>Ура! 💖</h2>
+      <p>Я тебя очень люблю!</p>
+      <!-- Замени src на свою картинку или GIF -->
+      <img id="celebrationImage" src="your-image.jpg" alt="Наша фотография" />
+
+      <div id="afterYesMedia" class="after-yes-media hidden">
+        <!-- Замени src на свою GIF -->
+        <img src="your-after-yes.gif" alt="GIF после второго да" />
+      </div>
+
+      <div class="second-question">
+        <p>А готова быть со мной не только 14 февраля но и всю жизнь?</p>
+        <div class="second-buttons">
+          <button id="secondYes" class="btn btn-yes">Да</button>
+          <button id="secondNo" class="btn btn-no">Нет</button>
+        </div>
+      </div>
+
+      <div id="countdownWidget" class="countdown hidden" aria-live="polite">
+        <p>До 21 июля 2026 осталось:</p>
+        <div class="countdown-value">0 дней 00:00:00</div>
+      </div>
+
+      <button id="hugBtn" class="btn btn-yes hug-btn hidden">
+        Хочешь узнать, когда я тебя залюблю и заобнимаю
+      </button>
+    </section>
+
+    <section id="blackout" class="blackout hidden" aria-live="assertive">
+      <h2>Ахуела?</h2>
+      <div class="blackout-media">
+        <!-- Замени src на свою картинку -->
+        <img src="your-blackout-image.jpg" alt="Картинка для черного экрана" />
+      </div>
+      <p>Твоему компу пизда через <span id="blackoutTimer">10</span> секунд</p>
+    </section>
+
+    <audio id="bgMusic" src="your-music.mp3" loop></audio>
+    <audio id="blackoutMusic" src="your-blackout-music.mp3" loop></audio>
+
+    <canvas id="confettiCanvas" class="confetti-canvas"></canvas>
+
+    <script src="script.js"></script>
+  </body>
+</html>
