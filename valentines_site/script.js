@@ -2,6 +2,7 @@ const card = document.getElementById("card");
 const noBtn = document.getElementById("noBtn");
 const yesBtn = document.getElementById("yesBtn");
 const noHint = document.getElementById("noHint");
+const photoSlot = document.querySelector(".photo-slot");
 const celebration = document.getElementById("celebration");
 const secondYesBtn = document.getElementById("secondYes");
 const secondNoBtn = document.getElementById("secondNo");
@@ -13,6 +14,15 @@ const confettiCanvas = document.getElementById("confettiCanvas");
 const ctx = confettiCanvas.getContext("2d");
 
 let noButtonRunning = false;
+
+const hintMessages = [
+  "Надеюсь ты пыталась нажать \"Да\" и промазала",
+  "Почти! Попробуй еще раз... на \"Да\"",
+  "Хитрая кнопка, но \"Да\" надежнее",
+  "Кажется, кто-то ищет \"Нет\"?",
+  "Я все еще жду \"Да\" ❤️",
+];
+let hintIndex = 0;
 
 function clamp(value, min, max) {
   return Math.max(min, Math.min(max, value));
@@ -37,17 +47,25 @@ function startNoButtonRunMode() {
 function moveNoButtonAway() {
   startNoButtonRunMode();
 
+  noHint.textContent = hintMessages[hintIndex % hintMessages.length];
+  noHint.classList.remove("hidden");
+  hintIndex += 1;
+
   const cardRect = card.getBoundingClientRect();
+  const photoRect = photoSlot.getBoundingClientRect();
   const padding = 12;
   const maxX = cardRect.width - noBtn.offsetWidth - padding;
   const maxY = cardRect.height - noBtn.offsetHeight - padding;
+  const photoBottom = photoRect.bottom - cardRect.top + padding;
+  const minY = Math.min(maxY, Math.max(padding, photoBottom));
 
   const nextX = padding + Math.random() * (maxX - padding);
-  const nextY = padding + Math.random() * (maxY - padding);
+  const nextY = minY + Math.random() * (maxY - minY || 1);
 
   noBtn.style.left = `${clamp(nextX, padding, maxX)}px`;
-  noBtn.style.top = `${clamp(nextY, padding, maxY)}px`;
+  noBtn.style.top = `${clamp(nextY, minY, maxY)}px`;
 }
+
 
 noBtn.addEventListener("mouseenter", moveNoButtonAway);
 noBtn.addEventListener("touchstart", (event) => {
@@ -189,6 +207,7 @@ yesBtn.addEventListener("click", () => {
   celebration.classList.remove("hidden");
   celebration.setAttribute("aria-hidden", "false");
   yesBtn.disabled = true;
+  noBtn.classList.add("hidden");
 });
 
 secondNoBtn.addEventListener("click", handleSecondNoClick);
