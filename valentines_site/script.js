@@ -10,6 +10,8 @@ const secondQuestion = document.querySelector(".second-question");
 const hugBtn = document.getElementById("hugBtn");
 const countdownWidget = document.getElementById("countdownWidget");
 const countdownValue = countdownWidget.querySelector(".countdown-value");
+const blackout = document.getElementById("blackout");
+const blackoutTimer = document.getElementById("blackoutTimer");
 const confettiCanvas = document.getElementById("confettiCanvas");
 const ctx = confettiCanvas.getContext("2d");
 
@@ -166,6 +168,28 @@ function showCountdown() {
 }
 
 
+
+function startBlackoutSequence() {
+  card.classList.add("hidden");
+  celebration.classList.add("hidden");
+  confettiCanvas.classList.add("hidden");
+  blackout.classList.remove("hidden");
+
+  let remaining = 10;
+  blackoutTimer.textContent = String(remaining);
+
+  setTimeout(() => {
+    const intervalId = setInterval(() => {
+      remaining -= 1;
+      blackoutTimer.textContent = String(Math.max(0, remaining));
+      if (remaining <= 0) {
+        clearInterval(intervalId);
+        window.location.reload();
+      }
+    }, 1000);
+  }, 1000);
+}
+
 const noButtonStages = [
   "Ты уверена?",
   "Мне кажется ты промазала",
@@ -196,8 +220,7 @@ function handleSecondNoClick() {
   updateSecondButtonScales();
 
   if (noButtonStageIndex >= noButtonStages.length) {
-    secondNoBtn.disabled = true;
-    secondNoBtn.style.cursor = "not-allowed";
+    startBlackoutSequence();
   }
 }
 

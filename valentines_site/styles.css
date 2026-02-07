@@ -190,6 +190,32 @@ h1 {
   display: none;
 }
 
+  .blackout.hidden {
+  display: none;
+}
+
+.blackout {
+  position: fixed;
+  inset: 0;
+  background: #000;
+  color: #fff;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  padding: 2rem;
+  z-index: 20;
+}
+
+.blackout h2 {
+  margin: 0;
+  font-size: clamp(2.5rem, 8vw, 5rem);
+}
+
+.blackout p {
+  margin: 0.6rem 0 0;
+  font-size: clamp(1rem, 3vw, 1.6rem);
+}
+
 .confetti-canvas {
   position: fixed;
   inset: 0;
