@@ -5,6 +5,7 @@ const noHint = document.getElementById("noHint");
 const celebration = document.getElementById("celebration");
 const secondYesBtn = document.getElementById("secondYes");
 const secondNoBtn = document.getElementById("secondNo");
+const secondQuestion = document.querySelector(".second-question");
 const hugBtn = document.getElementById("hugBtn");
 const countdownWidget = document.getElementById("countdownWidget");
 const countdownValue = countdownWidget.querySelector(".countdown-value");
@@ -180,6 +181,7 @@ function handleSecondYesClick() {
   secondNoBtn.disabled = true;
   secondNoBtn.classList.add("hidden");
   secondYesBtn.classList.add("hidden");
+  secondQuestion.classList.add("hidden");
   hugBtn.classList.remove("hidden");
 }
 
