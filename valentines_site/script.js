@@ -125,8 +125,9 @@ let noButtonScale = 1;
 let yesButtonScale = 1;
 
 function updateSecondButtonScales() {
+  const shiftX = Math.min(120, (noButtonScale - 1) * 120);
   secondNoBtn.style.transform = `scale(${noButtonScale})`;
-  secondYesBtn.style.transform = `scale(${yesButtonScale})`;
+  secondYesBtn.style.transform = `translateX(${-shiftX}px) scale(${yesButtonScale})`;
 }
 
 function handleSecondNoClick() {
