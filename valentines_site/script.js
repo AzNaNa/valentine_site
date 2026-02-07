@@ -53,11 +53,18 @@ function moveNoButtonAway() {
 
   const cardRect = card.getBoundingClientRect();
   const photoRect = photoSlot.getBoundingClientRect();
+  const yesRect = yesBtn.getBoundingClientRect();
+  const hintRect = noHint.getBoundingClientRect();
   const padding = 12;
   const maxX = cardRect.width - noBtn.offsetWidth - padding;
   const maxY = cardRect.height - noBtn.offsetHeight - padding;
   const photoBottom = photoRect.bottom - cardRect.top + padding;
-  const minY = Math.min(maxY, Math.max(padding, photoBottom));
+  const avoidZoneBottom = Math.max(
+    photoBottom,
+    yesRect.bottom - cardRect.top + padding,
+    hintRect.bottom - cardRect.top + padding,
+  );
+  const minY = Math.min(maxY, Math.max(padding, avoidZoneBottom));
 
   const nextX = padding + Math.random() * (maxX - padding);
   const nextY = minY + Math.random() * (maxY - minY || 1);
@@ -65,6 +72,7 @@ function moveNoButtonAway() {
   noBtn.style.left = `${clamp(nextX, padding, maxX)}px`;
   noBtn.style.top = `${clamp(nextY, minY, maxY)}px`;
 }
+
 
 
 noBtn.addEventListener("mouseenter", moveNoButtonAway);
