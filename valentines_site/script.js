@@ -6,6 +6,8 @@ const celebration = document.getElementById("celebration");
 const secondYesBtn = document.getElementById("secondYes");
 const secondNoBtn = document.getElementById("secondNo");
 const hugBtn = document.getElementById("hugBtn");
+const countdownWidget = document.getElementById("countdownWidget");
+const countdownValue = countdownWidget.querySelector(".countdown-value");
 const confettiCanvas = document.getElementById("confettiCanvas");
 const ctx = confettiCanvas.getContext("2d");
 
@@ -113,6 +115,30 @@ function startMassFireworks() {
   createConfetti(360);
 }
 
+function updateCountdown() {
+  const now = new Date();
+  const target = new Date(2026, 6, 21, 0, 0, 0);
+  const diffMs = Math.max(0, target - now);
+  const totalSeconds = Math.floor(diffMs / 1000);
+  const days = Math.floor(totalSeconds / (24 * 3600));
+  const hours = Math.floor((totalSeconds % (24 * 3600)) / 3600);
+  const minutes = Math.floor((totalSeconds % 3600) / 60);
+  const seconds = totalSeconds % 60;
+  countdownValue.textContent = `${days} дней ${String(hours).padStart(2, "0")}:${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2, "0")}`;
+}
+
+
+function showCountdown() {
+  updateCountdown();
+  countdownWidget.classList.remove("hidden");
+  hugBtn.classList.add("hidden");
+  if (!countdownWidget.dataset.timerStarted) {
+    countdownWidget.dataset.timerStarted = "true";
+    setInterval(updateCountdown, 1000);
+  }
+}
+
+
 const noButtonStages = [
   "Ты уверена?",
   "Мне кажется ты промазала",
@@ -150,8 +176,11 @@ function handleSecondNoClick() {
 
 function handleSecondYesClick() {
   startMassFireworks();
-  hugBtn.classList.remove("hidden");
   secondYesBtn.disabled = true;
+  secondNoBtn.disabled = true;
+  secondNoBtn.classList.add("hidden");
+  secondYesBtn.classList.add("hidden");
+  hugBtn.classList.remove("hidden");
 }
 
 yesBtn.addEventListener("click", () => {
@@ -162,6 +191,8 @@ yesBtn.addEventListener("click", () => {
 
 secondNoBtn.addEventListener("click", handleSecondNoClick);
 secondYesBtn.addEventListener("click", handleSecondYesClick);
+
+hugBtn.addEventListener("click", showCountdown);
 
 window.addEventListener("resize", resizeCanvas);
 resizeCanvas();
